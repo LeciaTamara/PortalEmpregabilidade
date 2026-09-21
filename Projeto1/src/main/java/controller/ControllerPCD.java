@@ -68,7 +68,8 @@ public class ControllerPCD extends HttpServlet {
 	// apos o cadastro da pessoa com fisica
 	protected void cadastroFeito(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("TelaInicioUsuario.jsp");
+//		response.sendRedirect("TelaInicioUsuario.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	// novoUsuario Cadastro de usuário
