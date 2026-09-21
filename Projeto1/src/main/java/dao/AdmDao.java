@@ -11,16 +11,19 @@ import model.Administrador;
 public class AdmDao {
 	//Conexao com o banco
 	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://"
-	+ System.getenv("DB_HOST")
-	+ ":"
-	+ System.getenv("DB_PORT")
-	+ "/"
-	+ System.getenv("DB_NAME")
-	+ "?useTimezone=true&serverTimezone=UTC";
+	private String url = "jdbc:mysql://127.0.0.1:3306/pei_db?useTimezone=true&serverTimezone=UTC";
+	private String usuario = "root";
+	private String senha = "lecia2024";
+//	private String url = "jdbc:mysql://"
+//	+ System.getenv("DB_HOST")
+//	+ ":"
+//	+ System.getenv("DB_PORT")
+//	+ "/"
+//	+ System.getenv("DB_NAME")
+//	+ "?useTimezone=true&serverTimezone=UTC";
 	
-	private String usuario = System.getenv("DB_USER");
-	private String senha = System.getenv("DB_PASSWORD");
+//	private String usuario = System.getenv("DB_USER");
+//	private String senha = System.getenv("DB_PASSWORD");
 	
 	//metodo de conexao
 	
