@@ -11,19 +11,18 @@ import model.Administrador;
 public class AdmDao {
 	//Conexao com o banco
 	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://127.0.0.1:3306/pei_db?useTimezone=true&serverTimezone=UTC";
-	private String usuario = "root";
-	private String senha = "lecia2024";
-//	private String url = "jdbc:mysql://"
-//	+ System.getenv("DB_HOST")
-//	+ ":"
-//	+ System.getenv("DB_PORT")
-//	+ "/"
-//	+ System.getenv("DB_NAME")
-//	+ "?useTimezone=true&serverTimezone=UTC";
-	
-//	private String usuario = System.getenv("DB_USER");
-//	private String senha = System.getenv("DB_PASSWORD");
+//	private String url = "jdbc:mysql://127.0.0.1:3306/pei_db?useTimezone=true&serverTimezone=UTC";
+//	private String usuario = "root";
+//	private String senha = "lecia2024";
+	private String url = "jdbc:mysql://"
+	+ System.getenv("DB_HOST")
+	+ ":"
+	+ System.getenv("DB_PORT")
+	+ "/"
+	+ System.getenv("DB_NAME")
+	+ "?useTimezone=true&serverTimezone=UTC";
+	private String usuario = System.getenv("DB_USER");
+	private String senha = System.getenv("DB_PASSWORD");
 	
 	//metodo de conexao
 	
@@ -74,7 +73,7 @@ public class AdmDao {
 	
 	//autenticação
 	public boolean autenticar(String email, String senha) {
-		String administrador = "select * from Administrador where email = ? and senha = ?";
+		String administrador = "select * from administrador where email = ? and senha = ?";
 		
 		try {
 			//abrir a conexao com o banco
@@ -93,7 +92,7 @@ public class AdmDao {
 	}
 	
 	public int pegarNivelAcesso(String email, String senha) {
-		String nivelAcesso = "select nivelAcesso from Administrador where email = ? and senha = ?";
+		String nivelAcesso = "select nivelAcesso from administrador where email = ? and senha = ?";
 		
 		try {
 			//abrir a conexao com o banco
@@ -117,7 +116,7 @@ public class AdmDao {
 	
 	//pega o id do administrador
 	public int pegarId(String email) {
-		String id = "select id from Administrador where email = ?";
+		String id = "select id from administrador where email = ?";
 		
 		try {
 			//abrir a conexao com o banco

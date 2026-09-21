@@ -14,19 +14,19 @@ public class PessoaPCDDAO {
 	/* MODULO DE CONEXÃO */
 	// PARAMETRO DE CONEXAO
 	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://127.0.0.1:3306/pei_db?useTimezone=true&serverTimezone=UTC";
-	private String usuario = "root";
-	private String senha = "lecia2024";
-//	private String url = "jdbc:mysql://"
-//			+ System.getenv("DB_HOST")
-//			+ ":"
-//			+ System.getenv("DB_PORT")
-//			+ "/"
-//			+ System.getenv("DB_NAME")
-//			+ "?useTimezone=true&serverTimezone=UTC";
-//			
-//			private String usuario = System.getenv("DB_USER");
-//			private String senha = System.getenv("DB_PASSWORD");
+//	private String url = "jdbc:mysql://127.0.0.1:3306/pei_db?useTimezone=true&serverTimezone=UTC";
+//	private String usuario = "root";
+//	private String senha = "lecia2024";
+	private String url = "jdbc:mysql://"
+			+ System.getenv("DB_HOST")
+			+ ":"
+			+ System.getenv("DB_PORT")
+			+ "/"
+			+ System.getenv("DB_NAME")
+			+ "?useTimezone=true&serverTimezone=UTC";
+			
+			private String usuario = System.getenv("DB_USER");
+			private String senha = System.getenv("DB_PASSWORD");
 	//metodo de conexao
 	
 	private Connection conectar() {
@@ -55,7 +55,7 @@ public class PessoaPCDDAO {
 
 	/* CRUD CREATE */
 	public void inserirpessoa(PessoaPCD pessoa) {
-		String create = "insert into pessoaComDeficiencia (nome, telefone, email, senha, dataNascimento, genero, endereco, nacionalidade, cpf, deficiencia, formacaoAcademica, descricaoDeficiencia, areaInteresse, nivelAcesso) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String create = "insert into pessoacomdeficiencia (nome, telefone, email, senha, dataNascimento, genero, endereco, nacionalidade, cpf, deficiencia, formacaoAcademica, descricaoDeficiencia, areaInteresse, nivelAcesso) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			// abrir a conexao
 			Connection con = conectar();
@@ -90,7 +90,7 @@ public class PessoaPCDDAO {
 	//SELECT
 	//pega o nivel de acesso
 	public int pegarNivelAcesso(String email, String senha) {
-		String nivelAcesso = "select nivelAcesso from pessoaComDeficiencia where email = ? and senha = ?";
+		String nivelAcesso = "select nivelAcesso from pessoacomdeficiencia where email = ? and senha = ?";
 		
 		try {
 			//abrir a conexao com o banco
@@ -116,7 +116,7 @@ public class PessoaPCDDAO {
 	public ArrayList<PessoaPCD> listarPessoa() {
 		// Criando um objeto para listar os dados da pessoa
 		ArrayList<PessoaPCD> pessoa = new ArrayList<>();
-		String read = "select * from pessoaComDeficiencia";
+		String read = "select * from pessoacomdeficiencia";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read);
@@ -146,7 +146,7 @@ public class PessoaPCDDAO {
 	public boolean autenticar(String email, String senha) {
 		PessoaPCD pessoa = new PessoaPCD();
 
-		String autenticar = "SELECT email, senha FROM pessoaComDeficiencia WHERE email = ? AND senha = ?";
+		String autenticar = "SELECT email, senha FROM pessoacomdeficiencia WHERE email = ? AND senha = ?";
 
 		try {
 			Connection con = conectar();
@@ -166,7 +166,7 @@ public class PessoaPCDDAO {
 	//SELECT****
 	// Buscar pessoa para realizar o login, o email que é passado pela sessão vem daqui
 	public void selecionarPessoa(PessoaPCD pessoa) {
-		String read2 = "select * from pessoaComDeficiencia where email = ?";
+		String read2 = "select * from pessoacomdeficiencia where email = ?";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read2);
@@ -192,7 +192,7 @@ public class PessoaPCDDAO {
 	// Método para buscar um usuário pPara listar o dados do perfil do usuario
 	public ArrayList<PessoaPCD> listardados(String email1) {
 		ArrayList<PessoaPCD> lista = new ArrayList<>();
-		String read = "select * from pessoaComDeficiencia Where email = ?";
+		String read = "select * from pessoacomdeficiencia Where email = ?";
 
 		try {
 			Connection con = conectar();
@@ -236,7 +236,7 @@ public class PessoaPCDDAO {
 	//CRUD UPDATE/
 	//selecionar pessoa
 	public void selecionardadosPessoa(PessoaPCD pessoa) {
-		String read2 = "select * from pessoaComDeficiencia where email = ?";
+		String read2 = "select * from pessoacomdeficiencia where email = ?";
 		
 		try {
 			Connection con = conectar();
@@ -263,7 +263,7 @@ public class PessoaPCDDAO {
 	
 	//editar perfil pessoa
 	public void alterarPerfil(PessoaPCD pessoa) {
-		String create = "update pessoaComDeficiencia set areaInteresse=?, genero=?, dataNascimento=?, nacionalidade=?, endereco=?, formacaoAcademica=?, deficiencia=?, descricaoDeficiencia=? where id=?";
+		String create = "update pessoacomdeficiencia set areaInteresse=?, genero=?, dataNascimento=?, nacionalidade=?, endereco=?, formacaoAcademica=?, deficiencia=?, descricaoDeficiencia=? where id=?";
 		
 		try {
 			Connection con = conectar();
@@ -290,7 +290,7 @@ public class PessoaPCDDAO {
 	// Método para buscar um usuário pPara listar o dados do perfil do usuario
 	public ArrayList<PessoaPCD> mostrarDados(int id) {
 	    ArrayList<PessoaPCD> mostrarPerfil = new ArrayList<>();
-	    String read = "SELECT id, areaInteresse, genero, dataNascimento, nacionalidade, endereco, formacaoAcademica, deficiencia, descricaoDeficiencia FROM pessoaComDeficiencia WHERE id = ?";
+	    String read = "SELECT id, areaInteresse, genero, dataNascimento, nacionalidade, endereco, formacaoAcademica, deficiencia, descricaoDeficiencia FROM pessoacomdeficiencia WHERE id = ?";
 
 	    try {
 	        Connection con = conectar();
@@ -325,7 +325,7 @@ public class PessoaPCDDAO {
 	//SELECT
 	//pegar o id do usuario
 		public int pegarId(String email) {
-			String id = "select id from pessoaComDeficiencia where email = ?";
+			String id = "select id from pessoacomdeficiencia where email = ?";
 			
 			try {
 				//abrir a conexao com o banco
